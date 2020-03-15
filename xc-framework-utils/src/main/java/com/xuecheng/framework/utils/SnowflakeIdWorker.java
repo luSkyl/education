@@ -1,10 +1,12 @@
 package com.xuecheng.framework.utils;
 
-/**
- * Created by mrt on 2018/3/27.
- */
+
 
 /**
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
+ *
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
  * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 <br>

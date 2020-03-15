@@ -4,7 +4,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Created by mrt on 2018/5/22.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 public class BCryptUtil {
     public static String encode(String password){

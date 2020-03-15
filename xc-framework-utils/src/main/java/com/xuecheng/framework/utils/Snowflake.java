@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
+ *
  * java edition of Twitter <b>Snowflake</b>, a network service for generating
  * unique ID numbers at high scale with some simple guarantees.
  *

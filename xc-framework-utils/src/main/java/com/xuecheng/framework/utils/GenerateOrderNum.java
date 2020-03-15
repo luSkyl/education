@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by mrt on 2018/3/27.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description 页面查询接口
  */
 public class GenerateOrderNum {
     /**

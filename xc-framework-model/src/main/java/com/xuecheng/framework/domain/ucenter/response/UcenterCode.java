@@ -7,7 +7,9 @@ import lombok.ToString;
 
 
 /**
- * Created by admin on 2018/3/5.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @ToString
 public enum UcenterCode implements ResultCode {
@@ -18,14 +20,20 @@ public enum UcenterCode implements ResultCode {
     UCENTER_CREDENTIAL_ERROR(false,23005,"账号或密码错误！"),
     UCENTER_LOGIN_ERROR(false,23006,"登陆过程出现异常请尝试重新操作！");
 
-    //操作代码
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "操作是否成功", example = "true", required = true)
     boolean success;
 
-    //操作代码
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "操作代码", example = "22001", required = true)
     int code;
-    //提示信息
+    /**
+     * 提示信息
+     */
     @ApiModelProperty(value = "操作提示", example = "操作过于频繁！", required = true)
     String message;
     private UcenterCode(boolean success, int code, String message){

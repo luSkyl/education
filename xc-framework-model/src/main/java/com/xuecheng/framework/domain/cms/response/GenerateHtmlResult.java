@@ -5,7 +5,9 @@ import com.xuecheng.framework.model.response.ResultCode;
 import lombok.Data;
 
 /**
- * Created by mrt on 2018/3/31.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 public class GenerateHtmlResult extends ResponseResult {

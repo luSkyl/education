@@ -10,7 +10,9 @@ import java.util.List;
 
 
 /**
- * Created by admin on 2018/3/5.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 @ToString
@@ -19,17 +21,29 @@ public class MediaVideoCourse {
 
     @Id
     private String id;
-    //课程id
+    /**
+     * 课程id
+     */
     private String courseid;
-    //章节id
+    /**
+     * 章节id
+     */
     private String chapter;
-    //文件id
+    /**
+     * 文件id
+     */
     private String fileId;
-    //视频处理方式
+    /**
+     * 视频处理方式
+     */
     private String processType;
-    //视频处理状态
+    /**
+     * 视频处理状态
+     */
     private String processStatus;
-    //HLS处理结果
+    /**
+     * HLS处理结果
+     */
     private String hls_m3u8;
     private List<String> hls_ts_list;
 
@@ -38,8 +52,10 @@ public class MediaVideoCourse {
         this.courseid = courseid;
         this.chapter = chapter;
         this.id = MD5Util.getStringMD5(courseid+chapter);
-        this.processType = "302002";//生成 hls
-        this.processStatus="303001";//未处理
+        //生成 hls
+        this.processType = "302002";
+        //未处理
+        this.processStatus="303001";
     }
 
 }

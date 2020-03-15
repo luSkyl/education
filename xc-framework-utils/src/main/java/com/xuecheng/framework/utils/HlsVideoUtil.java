@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
+ *
  * 此文件用于视频文件处理，步骤如下：
  * 1、生成mp4
  * 2、生成m3u8

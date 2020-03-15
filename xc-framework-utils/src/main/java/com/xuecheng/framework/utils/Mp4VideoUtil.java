@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 2018/3/6.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 public class Mp4VideoUtil extends VideoUtil {
 

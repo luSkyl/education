@@ -5,13 +5,24 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/5/21.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 @ToString
 @NoArgsConstructor
 public class UserToken{
-    String userId;//用户id
-    String utype;//用户类型
-    String companyId;//用户所属企业信息
+    /**
+     * 用户id
+     */
+    String userId;
+    /**
+     * 用户类型
+     */
+    String utype;
+    /**
+     * 用户所属企业信息
+     */
+    String companyId;
 }

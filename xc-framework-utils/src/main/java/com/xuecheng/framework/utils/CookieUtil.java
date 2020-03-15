@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by admin on 2018/3/18.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 public class CookieUtil {
 

@@ -7,7 +7,9 @@ import lombok.ToString;
 
 
 /**
- * Created by admin on 2018/3/5.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @ToString
 public enum OrderCode implements ResultCode {
@@ -19,14 +21,21 @@ public enum OrderCode implements ResultCode {
     Pay_USERERROR(false,41011,"支付用户与订单用户不一致！"),
     Pay_NOTFOUNDPAY(false,41012,"支付记录不存在！");
 
-    //操作代码
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "媒资系统操作是否成功", example = "true", required = true)
     boolean success;
 
-    //操作代码
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "媒资系统操作代码", example = "22001", required = true)
     int code;
-    //提示信息
+
+    /**
+     * 提示信息
+     */
     @ApiModelProperty(value = "媒资系统操作提示", example = "文件在系统已存在！", required = true)
     String message;
     private OrderCode(boolean success, int code, String message){

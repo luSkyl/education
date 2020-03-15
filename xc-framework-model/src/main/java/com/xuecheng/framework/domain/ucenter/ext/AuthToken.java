@@ -5,13 +5,24 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/5/21.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 @ToString
 @NoArgsConstructor
 public class AuthToken {
-    String access_token;//访问token
-    String refresh_token;//刷新token
-    String jwt_token;//jwt令牌
+    /**
+     * 访问token
+     */
+    String access_token;
+    /**
+     * 刷新token
+     */
+    String refresh_token;
+    /**
+     * jwt令牌
+     */
+    String jwt_token;
 }

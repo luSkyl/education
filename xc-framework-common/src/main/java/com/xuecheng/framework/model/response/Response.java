@@ -1,7 +1,9 @@
 package com.xuecheng.framework.model.response;
 
 /**
- * Created by admin on 2018/3/5.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 public interface Response {
     public static final boolean SUCCESS = true;

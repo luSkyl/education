@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/3/27.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 @ToString
@@ -22,7 +24,9 @@ public class PayOrderResult extends ResponseResult {
     private XcOrdersPay xcOrdersPay;
     private String orderNumber;
 
-    //当tradeState为NOTPAY（未支付）时显示支付二维码
+    /**
+     * 当tradeState为NOTPAY（未支付）时显示支付二维码
+     */
     private String codeUrl;
     private Float money;
 

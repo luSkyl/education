@@ -5,13 +5,17 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * Created by admin on 2018/2/10.
+ * @Author lcy
+ * @Date 2020/3/12
+ * @Description
  */
 @Data
 @ToString
 public class CourseInfo extends CourseBase {
 
-    //课程图片
+    /**
+     * 课程图片
+     */
     private String pic;
 
 }
