@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
- * Created by mrt on 2018/5/22.
+ * @Author lcy
+ * @Date 2020/3/15
+ * @Description
  */
 public class BaseController {
     protected HttpServletRequest request;

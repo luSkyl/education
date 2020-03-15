@@ -10,16 +10,24 @@ import java.util.List;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 数据模型信息
  */
 @Data
-@ToString
 @Document(collection = "cms_config")
 public class CmsConfig {
 
+    /**
+     * 主键
+     */
     @Id
     private String id;
+    /**
+     * 数据模型的名称
+     */
     private String name;
+    /**
+     * 数据模型项目
+     */
     private List<CmsConfigModel> model;
 
 }
