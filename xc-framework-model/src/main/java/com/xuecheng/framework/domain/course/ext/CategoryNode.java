@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 分类模型节点
  */
 @Data
 @ToString

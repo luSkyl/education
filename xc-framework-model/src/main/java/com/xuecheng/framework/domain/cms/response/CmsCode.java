@@ -50,6 +50,22 @@ public enum CmsCode implements ResultCode {
      * 页面模板不存在
      */
     CMS_GENERATEHTML_TEMPLATENOTEXISTS(false,24010,"页面模板不存在!"),
+    /**
+     * CMS站点不存在
+     */
+    CMS_SITE_ISNULL(false,24011,"CMS站点不存在!"),
+    /**
+     * 静态文件Id为空
+     */
+    CMS_HTMLFILEID_ISNULL(false,24011,"CMS站点不存在!"),
+    /**
+     * MQ接受的PageId不存在
+     */
+    CMS_MQ_PAGEID_NOTEXISTS(false,24011,"MQ接受的PageId不存在!"),
+    /**
+     * 页面物理路径为空
+     */
+    CMS_PAGEPHYSICALPATH_ISNULL(false,24012,"页面物理路径为空!"),
     ;
 
 

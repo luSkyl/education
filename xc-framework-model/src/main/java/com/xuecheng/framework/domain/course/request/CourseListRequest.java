@@ -7,7 +7,7 @@ import lombok.ToString;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 查询课程的条件
  */
 @Data
 @ToString

@@ -3,6 +3,7 @@ package com.xuecheng.api.cms;
 import com.xuecheng.framework.domain.cms.CmsPage;
 import com.xuecheng.framework.domain.cms.request.QueryPageRequest;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
+import com.xuecheng.framework.domain.course.response.CmsPostPageResult;
 import com.xuecheng.framework.model.response.QueryResponseResult;
 import com.xuecheng.framework.model.response.ResponseResult;
 import io.swagger.annotations.Api;
@@ -80,6 +81,31 @@ public interface CmsPageControllerApi {
      */
     @ApiOperation("通过ID删除页面")
     public ResponseResult delete(String id);
+
+    /**
+     * 发布页面
+     * @param pageId
+     * @return
+     */
+    @ApiOperation("发布页面")
+    public ResponseResult post(String pageId);
+
+    /**
+     * 保存页面
+     * @param cmsPage
+     * @return
+     */
+    @ApiOperation("保存页面")
+    public CmsPageResult save(CmsPage cmsPage);
+
+    /**
+     * 一键发布页面
+     * @param cmsPage
+     * @return
+     */
+    @ApiOperation("一键发布页面")
+    public CmsPostPageResult postPageQuick(CmsPage cmsPage);
+
 
 
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 课程计划  设置为树型结构
  */
 @Data
 @ToString

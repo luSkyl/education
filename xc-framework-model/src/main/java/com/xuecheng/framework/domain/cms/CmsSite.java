@@ -47,4 +47,5 @@ public class CmsSite {
      */
     private Date siteCreateTime;
 
+
 }

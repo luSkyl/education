@@ -3,7 +3,7 @@ package com.xuecheng.framework.client;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 服务名
  */
 public class XcServiceList {
     public static final String XC_GOVERN_CENTER = "xc-govern-center";

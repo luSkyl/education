@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 课程图片
  */
 @Data
 @ToString

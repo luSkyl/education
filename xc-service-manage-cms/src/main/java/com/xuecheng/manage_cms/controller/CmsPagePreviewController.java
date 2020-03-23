@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Author lcy
@@ -28,7 +30,9 @@ public class CmsPagePreviewController extends BaseController {
     public void preview(@PathVariable("pageId")String pageId){
         String pageHtml = pageService.getPageHtml(pageId);
         try {
-            IoUtil.write(response.getOutputStream(),true,pageHtml.getBytes("UTF-8"));
+            ServletOutputStream outputStream = response.getOutputStream();
+            response.setHeader("Content-type","text/html;charset=utf-8");
+            outputStream.write(pageHtml.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
         }

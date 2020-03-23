@@ -18,9 +18,15 @@
         <option value="$PROJECT_DIR$/xc-framework-utils/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-api/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-manage-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/xc‐service‐manage‐cms‐client/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-service-manage-course/pom.xml" />
+        <option value="E:/BaiduNetdiskDownload/黑马/21-微服务教育网学成在线/08-课程图片管理与分布式文件系统/资料/分布式文件系统研究/test-fastdfs/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-service-base-filesystem/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-govern-center/pom.xml" />
       </list>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
   <component name="SuppressionsComponent">
     <option name="suppComments" value="[]" />
   </component>

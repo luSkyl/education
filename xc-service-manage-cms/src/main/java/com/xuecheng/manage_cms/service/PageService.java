@@ -3,7 +3,10 @@ package com.xuecheng.manage_cms.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.util.PageUtil;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -17,12 +20,14 @@ import com.xuecheng.framework.domain.cms.CmsTemplate;
 import com.xuecheng.framework.domain.cms.request.QueryPageRequest;
 import com.xuecheng.framework.domain.cms.response.CmsCode;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
+import com.xuecheng.framework.domain.course.response.CmsPostPageResult;
 import com.xuecheng.framework.exception.CustomException;
 import com.xuecheng.framework.exception.ExceptionCast;
 import com.xuecheng.framework.model.response.CommonCode;
 import com.xuecheng.framework.model.response.QueryResponseResult;
 import com.xuecheng.framework.model.response.QueryResult;
 import com.xuecheng.framework.model.response.ResponseResult;
+import com.xuecheng.manage_cms.config.RabbitmqConfig;
 import com.xuecheng.manage_cms.dao.CmsConfigRepository;
 import com.xuecheng.manage_cms.dao.CmsPageRepository;
 import com.xuecheng.manage_cms.dao.CmsSiteRepository;
@@ -34,6 +39,8 @@ import io.netty.util.internal.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -53,6 +60,7 @@ import sun.net.www.content.image.gif;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -79,6 +87,8 @@ public class PageService {
     private GridFsTemplate gridFsTemplate;
     @Autowired
     private GridFSBucket gridFSBucket;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * 页面列表分页查询
@@ -395,5 +405,127 @@ public class PageService {
         return map;
     }
 
+
+    /**
+     * 页面发布
+     *
+     * @param pageId
+     * @return
+     */
+    public ResponseResult postPage(String pageId) {
+        //执行页面静态化
+        String pageHtml = this.getPageHtml(pageId);
+        //保存静态化文件
+        CmsPage cmsPage = saveHtml(pageId, pageHtml);
+        //发送消息
+        sendPostPage(cmsPage.getPageId());
+        return new ResponseResult(CommonCode.SUCCESS);
+    }
+
+    /**
+     * 发送页面发布消息
+     *
+     * @param pageId
+     */
+    private void sendPostPage(String pageId) {
+        CmsPage cmsPage = this.getById(pageId);
+        if (cmsPage == null) {
+            ExceptionCast.cast(CmsCode.CMS_PAGE_NOTEXISTS);
+        }
+        //创建消息对象
+        Map<String, String> msgMap = new HashMap<>();
+        msgMap.put("pageId", pageId);
+        //消息内容
+        String msg = JSON.toJSONString(msgMap);
+        //获取站点id作为routingKey
+        String siteId = cmsPage.getSiteId();
+        //发布消息
+        this.rabbitTemplate.convertAndSend(RabbitmqConfig.EX_ROUTING_CMS_POSTPAGE, siteId, msg);
+    }
+
+
+    /**
+     * 保存静态页面内容
+     *
+     * @param pageId
+     * @param content
+     * @return
+     */
+    private CmsPage saveHtml(String pageId, String content) {
+        //查询页面
+        Optional<CmsPage> optional = cmsPageRepository.findById(pageId);
+        if (!optional.isPresent()) {
+            ExceptionCast.cast(CmsCode.CMS_PAGE_NOTEXISTS);
+        }
+        CmsPage cmsPage = optional.get();
+        //存储之前先删除
+        String htmlFileId = cmsPage.getHtmlFileId();
+        if (StringUtils.isNotBlank(htmlFileId)) {
+            gridFsTemplate.delete(Query.query(Criteria.where("_id").is(htmlFileId)));
+        }
+
+        //保存html文件到GridFS
+        try (InputStream inputStream = IOUtils.toInputStream(content, "utf-8")) {
+            //文件id
+            String fileId = gridFsTemplate.store(inputStream, cmsPage.getPageName()).toString();
+            //将文件id存储到cmspage中
+            cmsPage.setHtmlFileId(fileId);
+            cmsPageRepository.save(cmsPage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cmsPage;
+    }
+
+    /**
+     * 添加页面，如果已存在则更新页面
+     *
+     * @param cmsPage
+     * @return
+     */
+    public CmsPageResult save(CmsPage cmsPage) {
+        //校验页面是否存在，根据页面名称、站点Id、页面webpath查询
+        Optional<CmsPage> cmsPage1 = cmsPageRepository.findByPageNameAndSiteIdAndPageWebPath(cmsPage.getPageName(), cmsPage.getSiteId(), cmsPage.getPageWebPath());
+        if (cmsPage1.isPresent()) {
+            //更新
+            return this.update(cmsPage1.get().getPageId(), cmsPage);
+        } else {
+            //添加
+            return this.add(cmsPage);
+        }
+    }
+
+    /**
+     * 一键发布
+     *
+     * @param cmsPage
+     * @return
+     */
+    public CmsPostPageResult postPageQuick(CmsPage cmsPage) {
+        //更新 或 保存页面
+        CmsPageResult cmsPageResult = this.save(cmsPage);
+        if (!cmsPageResult.isSuccess()) {
+            log.error("【一键发布】 更新 或 保存页面失败 e:{}", CommonCode.FAIL.message());
+            ExceptionCast.cast(CommonCode.FAIL);
+        }
+        //获取页面Id
+        CmsPage page = cmsPageResult.getCmsPage();
+        String pageId = page.getPageId();
+        //发布
+        ResponseResult responseResult = this.postPage(pageId);
+        if (!responseResult.isSuccess()) {
+            log.error("【一键发布】 页面发布失败 e:{}", CommonCode.FAIL.message());
+            ExceptionCast.cast(CommonCode.FAIL);
+        }
+        CmsSite cmsSite = cmsSiteRepository.findBySiteId(page.getSiteId());
+        if (cmsSite == null) {
+            log.error("【获取站点域名】 获取站点域名失败 e:{}", CommonCode.INVALID_PARAM.message());
+            ExceptionCast.cast(CommonCode.INVALID_PARAM);
+        }
+
+        //拼接页面Url
+        String url = StrUtil.strBuilder().append(cmsSite.getSiteDomain()).append(cmsPage.getPageWebPath()).append(cmsPage.getPageName()).toString();
+        return new CmsPostPageResult(CommonCode.SUCCESS,url);
+    }
 
 }

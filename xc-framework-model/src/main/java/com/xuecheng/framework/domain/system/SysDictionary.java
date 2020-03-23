@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 数据字典模型
  */
 @Data
 @ToString
@@ -22,12 +22,21 @@ public class SysDictionary {
     @Id
     private String id;
 
+    /**
+     * 字典名称
+     */
     @Field("d_name")
     private String dName;
 
+    /**
+     * 字典分类
+     */
     @Field("d_type")
     private String dType;
 
+    /**
+     * 字典数据
+     */
     @Field("d_value")
     private List<SysDictionaryValue> dValue;
 
