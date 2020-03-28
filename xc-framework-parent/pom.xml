@@ -31,13 +31,15 @@
         <okhttp.version>3.9.1</okhttp.version>
         <feign-okhttp.version>8.18.0</feign-okhttp.version>
         <lombok.version>1.16.16</lombok.version>
-        <springfox-swagger.version>2.7.0</springfox-swagger.version>
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <fastjson.version>1.2.30</fastjson.version>
         <fastdfs-client-java.version>1.27.0.0</fastdfs-client-java.version>
         <mysql-connector-java.version>5.1.40</mysql-connector-java.version>
-        <elasticsearch.version>6.2.1</elasticsearch.version>
+        <elasticsearch.version>6.2.4</elasticsearch.version>
         <guava.version>24.0-jre</guava.version>
-        <hutool.version>5.2.1</hutool.version>
+        <hutool.version>5.2.3</hutool.version>
+        <knife4j.version>2.0.2</knife4j.version>
+        <bootstrap.version>2.0.2</bootstrap.version>
     </properties>
     <!--test-->
     <dependencyManagement>
@@ -118,9 +120,9 @@
                 <version>${springfox-swagger.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${bootstrap.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -148,6 +150,17 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <!--在引用时请在maven中央仓库搜索最新版本号-->
+                <version>${knife4j.version}</version>
             </dependency>
 
 

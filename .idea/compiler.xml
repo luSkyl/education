@@ -16,6 +16,7 @@
         <module name="xc-service-base-filesystem" />
         <module name="xc-service-manage-cms" />
         <module name="xc-service-manage-course" />
+        <module name="xc-service-search" />
         <module name="xc‐service‐manage‐cms‐client" />
       </profile>
     </annotationProcessing>
@@ -31,6 +32,7 @@
       <module name="xc-service-base-filesystem" target="1.8" />
       <module name="xc-service-manage-cms" target="1.8" />
       <module name="xc-service-manage-course" target="1.8" />
+      <module name="xc-service-search" target="1.8" />
       <module name="xc‐service‐manage‐cms‐client" target="1.8" />
     </bytecodeTargetLevel>
   </component>

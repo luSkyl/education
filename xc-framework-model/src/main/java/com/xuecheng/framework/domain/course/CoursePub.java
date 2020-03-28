@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 课程发布表模型
  */
 @Data
 @ToString
@@ -32,15 +32,24 @@ public class CoursePub implements Serializable {
     private String studymodel;
     private String teachmode;
     private String description;
-    private String pic;//图片
-    private Date timestamp;//时间戳
+    private String pic;
+    /**
+     * 时间戳
+     */
+    private Date timestamp;
     private String charge;
     private String valid;
     private String qq;
-    private Float price;
+    private Double price;
     private Float price_old;
     private String expires;
-    private String teachplan;//课程计划
+    /**
+     * 课程计划
+     */
+    private String teachplan;
+    /**
+     * 课程发布时间
+     */
     @Column(name="pub_time")
-    private String pubTime;//课程发布时间
+    private String pubTime;
 }
