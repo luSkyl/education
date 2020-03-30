@@ -1,6 +1,7 @@
 package com.xuecheng.manage_cms.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.text.StrBuilder;
@@ -42,6 +43,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -249,7 +251,9 @@ public class PageService {
         //根据id查询页面信息
         CmsPage one = this.getById(id);
         if (one != null) {
-            BeanUtil.copyProperties(cmsPage, one);
+            BeanUtil.copyProperties(cmsPage,one);
+            one.setHtmlFileId(this.getById(id).getHtmlFileId());
+            one.setPageId(this.getById(id).getPageId());
             //执行更新
             CmsPage save = cmsPageRepository.save(one);
             if (save != null) {
@@ -261,6 +265,7 @@ public class PageService {
         //返回失败
         return new CmsPageResult(CommonCode.FAIL, null);
     }
+
 
 
     /**

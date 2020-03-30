@@ -7,46 +7,57 @@ import java.util.List;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
- *
- * 此文件作为视频文件处理父类，提供：
+ * @Description 此文件作为视频文件处理父类，提供：
  * 1、查看视频时长
  * 2、校验两个视频的时长是否相等
- *
  */
 public class VideoUtil {
 
-    String ffmpeg_path = "D:\\Program Files\\ffmpeg-20180227-fa0c9d6-win64-static\\bin\\ffmpeg.exe";//ffmpeg的安装位置
+    /**
+     * ffmpeg的安装位置
+     */
+    String ffmpegPath = "D:\\Tools\\ffmpeg\\bin\\ffmpeg.exe";
 
-    public VideoUtil(String ffmpeg_path){
-        this.ffmpeg_path = ffmpeg_path;
+    public VideoUtil(String ffmpegPath) {
+        this.ffmpegPath = ffmpegPath;
     }
 
 
-    //检查视频时间是否一致
-    public Boolean check_video_time(String source,String target) {
+    /**
+     * 检查视频时间是否一致
+     *
+     * @param source
+     * @param target
+     * @return
+     */
+    public Boolean check_video_time(String source, String target) {
         String source_time = get_video_time(source);
         //取出时分秒
-        source_time = source_time.substring(0,source_time.lastIndexOf("."));
+        source_time = source_time.substring(0, source_time.lastIndexOf("."));
         String target_time = get_video_time(target);
         //取出时分秒
-        target_time = target_time.substring(0,target_time.lastIndexOf("."));
-        if(source_time == null || target_time == null){
+        target_time = target_time.substring(0, target_time.lastIndexOf("."));
+        if (source_time == null || target_time == null) {
             return false;
         }
-        if(source_time.equals(target_time)){
+        if (source_time.equals(target_time)) {
             return true;
         }
         return false;
     }
 
-    //获取视频时间(时：分：秒：毫秒)
+    /**
+     * 获取视频时间(时：分：秒：毫秒)
+     *
+     * @param video_path
+     * @return
+     */
     public String get_video_time(String video_path) {
         /*
         ffmpeg -i  lucene.mp4
          */
         List<String> commend = new ArrayList<String>();
-        commend.add(ffmpeg_path);
+        commend.add(ffmpegPath);
         commend.add("-i");
         commend.add(video_path);
         try {
@@ -58,11 +69,11 @@ public class VideoUtil {
             String outstring = waitFor(p);
             System.out.println(outstring);
             int start = outstring.trim().indexOf("Duration: ");
-            if(start>=0){
+            if (start >= 0) {
                 int end = outstring.trim().indexOf(", start:");
-                if(end>=0){
-                    String time = outstring.substring(start+10,end);
-                    if(time!=null && !time.equals("")){
+                if (end >= 0) {
+                    String time = outstring.substring(start + 10, end);
+                    if (time != null && !time.equals("")) {
                         return time.trim();
                     }
                 }
@@ -76,7 +87,7 @@ public class VideoUtil {
         return null;
     }
 
-     public String waitFor(Process p) {
+    public String waitFor(Process p) {
         InputStream in = null;
         InputStream error = null;
         String result = "error";
@@ -86,7 +97,8 @@ public class VideoUtil {
             in = p.getInputStream();
             error = p.getErrorStream();
             boolean finished = false;
-            int maxRetry = 600;//每次休眠1秒，最长执行时间10分种
+            //每次休眠1秒，最长执行时间10分种
+            int maxRetry = 600;
             int retry = 0;
             while (!finished) {
                 if (retry > maxRetry) {
@@ -108,7 +120,8 @@ public class VideoUtil {
                     finished = true;
 
                 } catch (IllegalThreadStateException e) {
-                    Thread.currentThread().sleep(1000);//休眠1秒
+                    //休眠1秒
+                    Thread.sleep(1000);
                     retry++;
                 }
             }
@@ -124,7 +137,7 @@ public class VideoUtil {
                 }
             }
         }
-       return outputString.toString();
+        return outputString.toString();
 
     }
 

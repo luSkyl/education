@@ -40,11 +40,11 @@ public enum CourseCode implements ResultCode {
     /**
      * 选择的媒资文件访问地址为空
      */
-    COURSE_MEDIS_URLISNULL(false,31107,"选择的媒资文件访问地址为空！"),
+    COURSE_MEDIA_URLISNULL(false,31107,"选择的媒资文件访问地址为空！"),
     /**
      * 选择的媒资文件名称为空
      */
-    COURSE_MEDIS_NAMEISNULL(false,31108,"选择的媒资文件名称为空！"),
+    COURSE_MEDIA_NAMEISNULL(false,31108,"选择的媒资文件名称为空！"),
     /**
      * 课程计划为空
      */
@@ -56,7 +56,15 @@ public enum CourseCode implements ResultCode {
     /**
      * 查询课程列表条件中公司Id不存在
      */
-    COURSE_COURSELISTREQUEST_COMPANYIDNOTEXISTS(false,31110,"查询课程列表条件中公司Id不存在！"),
+    COURSE_COURSELISTREQUEST_COMPANYIDNOTEXISTS(false,31111,"查询课程列表条件中公司Id不存在！"),
+    /**
+     * 课程媒体中课程计划为空
+     */
+    COURSE_MEDIA_TEACHPLAN_ISNULL(false,31112,"课程媒体中课程计划为空"),
+    /**
+     * 课程媒体中课程计划的等级错误
+     */
+    COURSE_MEDIA_TEACHPLAN_GRADEERROR(false,31113,"课程媒体中课程计划的等级错误"),
     ;
 
     /**

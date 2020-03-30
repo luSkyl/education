@@ -11,20 +11,59 @@ import lombok.ToString;
  */
 @ToString
 public enum MediaCode implements ResultCode {
+    /**
+     * 上传文件在系统注册失败，请刷新页面重试！
+     */
     UPLOAD_FILE_REGISTER_FAIL(false,22001,"上传文件在系统注册失败，请刷新页面重试！"),
+    /**
+     * 上传文件在系统已存在
+     */
     UPLOAD_FILE_REGISTER_EXIST(false,22002,"上传文件在系统已存在！"),
+    /**
+     * 分块文件在系统已存在
+     */
     CHUNK_FILE_EXIST_CHECK(true,22003,"分块文件在系统已存在！"),
+    /**
+     * 合并文件失败，文件在系统已存在！
+     */
     MERGE_FILE_FAIL(false,22004,"合并文件失败，文件在系统已存在！"),
-    MERGE_FILE_CHECKFAIL(false,22005,"合并文件校验失败！");
+    /**
+     * 合并文件校验失败
+     */
+    MERGE_FILE_CHECKFAIL(false,22005,"合并文件校验失败！"),
+    /**
+     * 上传文件目录创建失败
+     */
+    UPLOAD_FILE_REGISTER_CREATEFOLDER_FAIL(false,22006,"上传文件目录创建失败"),
+    /**
+     *上传的文件为空
+     */
+    UPLOAD_FILE_REGISTER_ISNULL(false,22007,"上传的文件为空!"),
+    /**
+     * 块文件上传失败
+     */
+    CHUNK_FILE_UPLOAD_FAIL(false,22008,"块文件上传失败!"),
+    /**
+     * 合并块文件创建失败
+     */
+    MERGE_FILE_CREATEFAIL(false,22009,"合并块文件创建失败")
 
-    //操作代码
+    ;
+
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "媒资系统操作是否成功", example = "true", required = true)
     boolean success;
 
-    //操作代码
+    /**
+     * 操作代码
+     */
     @ApiModelProperty(value = "媒资系统操作代码", example = "22001", required = true)
     int code;
-    //提示信息
+    /**
+     * 提示信息
+     */
     @ApiModelProperty(value = "媒资系统操作提示", example = "文件在系统已存在！", required = true)
     String message;
     private MediaCode(boolean success,int code, String message){

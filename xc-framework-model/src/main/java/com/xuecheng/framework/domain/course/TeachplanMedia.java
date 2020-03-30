@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 课程计划于媒资信息
  */
 @Data
 @ToString
@@ -32,6 +32,8 @@ public class TeachplanMedia implements Serializable {
 
     @Column(name="media_url")
     private String mediaUrl;
+
+    @Column(name="courseid")
     private String courseId;
 
 }

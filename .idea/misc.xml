@@ -20,10 +20,12 @@
         <option value="$PROJECT_DIR$/xc-service-manage-cms/pom.xml" />
         <option value="$PROJECT_DIR$/xc‐service‐manage‐cms‐client/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-manage-course/pom.xml" />
-        <option value="E:/BaiduNetdiskDownload/黑马/21-微服务教育网学成在线/08-课程图片管理与分布式文件系统/资料/分布式文件系统研究/test-fastdfs/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-base-filesystem/pom.xml" />
         <option value="$PROJECT_DIR$/xc-govern-center/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-search/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-service-manage-media/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-service-manage-media-processor/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-service-learning/pom.xml" />
       </list>
     </option>
   </component>

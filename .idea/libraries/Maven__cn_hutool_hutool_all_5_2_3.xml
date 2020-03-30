@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/5.2.3/hutool-all-5.2.3-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/5.2.0/hutool-all-5.2.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

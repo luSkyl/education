@@ -5,6 +5,7 @@ import com.xuecheng.framework.domain.cms.response.CoursePublishResult;
 import com.xuecheng.framework.domain.course.CourseBase;
 import com.xuecheng.framework.domain.course.CoursePic;
 import com.xuecheng.framework.domain.course.Teachplan;
+import com.xuecheng.framework.domain.course.TeachplanMedia;
 import com.xuecheng.framework.domain.course.ext.CourseInfo;
 import com.xuecheng.framework.domain.course.ext.CourseView;
 import com.xuecheng.framework.domain.course.ext.TeachplanNode;
@@ -120,6 +121,15 @@ public interface CourseControllerApi {
      */
     @ApiOperation("发布课程")
     public CoursePublishResult publish(@PathVariable String id);
+
+    /**
+     * 保存媒资信息
+     * @param teachplanMedia
+     * @return
+     */
+    @ApiOperation("保存媒资信息")
+    public ResponseResult savemedia(TeachplanMedia teachplanMedia);
+
 
 
 
