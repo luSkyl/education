@@ -14,7 +14,15 @@ public enum LearningCode implements ResultCode {
     /**
      * 获取学习地址失败
      */
-    LEARNING_GETMEDIA_ERROR(false,23001,"获取学习地址失败")
+    LEARNING_GETMEDIA_ERROR(false,23001,"获取学习地址失败"),
+    /**
+     * 选课用户为空
+     */
+    CHOOSECOURSE_USERISNULL(false,23002,"选课用户为空"),
+    /**
+     * 选课任务为空
+     */
+    CHOOSECOURSE_TASKISNULL(false,23003,"选课任务为空"),
 
     ;
 

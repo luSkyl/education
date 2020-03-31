@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @Author lcy
  * @Date 2020/3/12
- * @Description
+ * @Description 选课
  */
 @Data
 @ToString
