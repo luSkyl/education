@@ -186,7 +186,7 @@ public class CourseService {
      * @param courseListRequest
      * @return
      */
-    public QueryResponseResult<CourseInfo> findCourseList(int page, int size, CourseListRequest courseListRequest) {
+    public QueryResponseResult<CourseInfo> findCourseList(String companyId,int page, int size, CourseListRequest courseListRequest) {
         if (page < 0) {
             page = 0;
         }
@@ -196,6 +196,8 @@ public class CourseService {
         if (courseListRequest == null) {
             courseListRequest = new CourseListRequest();
         }
+        //企业id
+        courseListRequest.setCompanyId(companyId);
         PageHelper.startPage(page, size);
         Page<CourseInfo> courseListPage = courseMapper.findCourseListPage(courseListRequest);
         List<CourseInfo> courseInfoList = courseListPage.getResult();

@@ -12,12 +12,47 @@ import lombok.ToString;
  */
 @ToString
 public enum AuthCode implements ResultCode {
+    /**
+     * 请输入账号
+     */
     AUTH_USERNAME_NONE(false,23001,"请输入账号！"),
+    /**
+     * 请输入密码
+     */
     AUTH_PASSWORD_NONE(false,23002,"请输入密码！"),
+    /**
+     * 请输入验证码
+     */
     AUTH_VERIFYCODE_NONE(false,23003,"请输入验证码！"),
+    /**
+     * 账号不存在
+     */
     AUTH_ACCOUNT_NOTEXISTS(false,23004,"账号不存在！"),
+    /**
+     * 账号或密码错误
+     */
     AUTH_CREDENTIAL_ERROR(false,23005,"账号或密码错误！"),
-    AUTH_LOGIN_ERROR(false,23006,"登陆过程出现异常请尝试重新操作！");
+    /**
+     * 登陆过程出现异常请尝试重新操作
+     */
+    AUTH_LOGIN_ERROR(false,23006,"登陆过程出现异常请尝试重新操作！"),
+    /**
+     * 登录认证实例不存在
+     */
+    AUTH_LOGIN_AUTHSERVER_NOTFOUND(false,23007,"登录认证实例不存在"),
+    /**
+     * 登录认证申请令牌失败
+     */
+    AUTH_LOGIN_APPLYTOKEN_FAIL(false,23008,"登录认证申请令牌失败"),
+    /**
+     * 登录认证保存Token失败
+     */
+    AUTH_LOGIN_TOKEN_SAVEFAIL(false,23009,"登录认证保存Token失败"),
+    /**
+     * 退出失败
+     */
+    AUTH_LOGOUT_FAIL(false,23010,"退出失败"),
+    ;
 
     /**
      * 操作代码
